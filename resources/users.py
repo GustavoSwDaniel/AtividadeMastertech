@@ -1,9 +1,7 @@
 from flask_restful import Resource, reqparse, request
-from datetime import datetime
 
-
-from Models.usuarios import UserModel, UserSchema, serialization, deserialization
-
+from Models.models import UserSchema, user
+from Models.users import UserModel, serialization
 
 userSchema = UserSchema()
 
@@ -22,37 +20,42 @@ argumentos.add_argument("data_de_cadastro", type=str, help="Required field 'date
 
 class Users(Resource):
     def get(self):
-        return [userSchema.dump(user) for user in UserModel.query.all()]
+        return [serialization(user) for user in user.query.all()]
+
+
+class Hello(Resource):
+    def get(self, teste):
+        return {"message": teste}
 
 
 class RegisterUser(Resource):
     def post(self):
 
         dados = argumentos.parse_args()
-        user = UserModel(**dados)
+        userR = UserModel(**dados)
 
-        user.saver_user()
-        return serialization(user)
+        userR.saver_user()
+        return serialization(userR), 201
 
 
 class User(Resource):
     def get(self, id_user):
-        user = UserModel.find_user(id_user)
+        userG = UserModel.find_user(id_user)
         if user:
-            return serialization(user), 200
+            return serialization(userG), 200
         return {"message": "User not found"}, 404
 
     def put(self, id_user):
 
         dados = argumentos.parse_args()
 
-        user_encontrado = UserModel.find_user(id_user)
+        user_foun = UserModel.find_user(id_user)
 
-        if user_encontrado:
-            user_encontrado.updade_user(**dados)
+        if user_foun:
+            user_foun.updade_user(**dados)
             try:
-                user_encontrado.saver_user()
+                user_foun.saver_user()
             except:
                 return {"message": "interenal error"}, 500
-            return serialization(user_encontrado)
+            return serialization(user_foun)
         return {"message": "user not found"}, 404

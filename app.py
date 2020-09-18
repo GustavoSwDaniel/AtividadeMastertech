@@ -1,9 +1,12 @@
+# pylint: disable=maybe-no-member
 from flask import Flask
 from flask_restful import Api, Resource
-from flask_marshmallow import Marshmallow
+from flask_migrate import Migrate
 
 
-from resources.usuarios import RegisterUser, Users, User
+from Models.models import configure as config_db
+from resources.users import RegisterUser, Users, User, Hello
+from resources.check_user import RegisterCheckUser
 
 
 app = Flask(__name__)
@@ -15,17 +18,18 @@ app.config["SQLALCHEMY_ECHO"] = True
 
 
 api = Api(app)
-ma = Marshmallow(app)
+
+config_db(app)
+
+Migrate(app, app.db)
 
 
-@app.before_first_request
-def create_database():
-    banco.create_all()
-
-
+api.add_resource(Hello, "/hello/<int:teste>")
 api.add_resource(RegisterUser, "/cadastro")
 api.add_resource(Users, "/users")
 api.add_resource(User, "/user/<int:id_user>")
+
+api.add_resource(RegisterCheckUser, "/point/<int:user_id>")
 
 
 if __name__ == "__main__":
