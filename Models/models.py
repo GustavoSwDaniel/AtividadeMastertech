@@ -13,7 +13,7 @@ def configure(app):
     app.db = db
 
 
-class user(db.Model):
+class User(db.Model):
 
     id_user = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nome_completo = db.Column(db.String(100))
@@ -23,12 +23,12 @@ class user(db.Model):
     checkInUser = db.relationship("check_in", backref="user")
 
 
-class check_in(db.Model):
+class CheckIn(db.Model):
 
     id_pont = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    usuário_responsável = db.Column(db.String(30))
+    usuario_responsavel = db.Column(db.String(30))
     tipo_da_batida = db.Column(db.String(30))
-    Hora_data_batida = db.Column(db.DateTime)
+    hora_data_batida = db.Column(db.DateTime)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id_user"))
 
 
@@ -43,8 +43,8 @@ class CheckInUserSchema(ma.Schema):
         ordered = True
         fields = (
             "id_pont",
-            "usuário_responsável",
+            "usuario_responsavel",
             "tipo_da_batida",
-            "Hora_data_batida",
+            "hora_data_batida",
             "id_user",
         )

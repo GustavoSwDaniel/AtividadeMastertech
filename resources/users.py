@@ -1,6 +1,7 @@
 from flask_restful import Resource, reqparse, request
+from datetime import datetime
 
-from Models.models import UserSchema, user
+from Models.models import UserSchema, User
 from Models.users import UserModel, serialization
 
 userSchema = UserSchema()
@@ -15,7 +16,9 @@ argumentos.add_argument("cpf", type=str, required=True, help="Required field 'cp
 
 argumentos.add_argument("email", type=str, required=True, help="Required field 'email'")
 
-argumentos.add_argument("data_de_cadastro", type=str, help="Required field 'date'")
+argumentos.add_argument(
+    "data_de_cadastro", default=datetime.now(), type=str, help="Required field 'date'"
+)
 
 
 class Users(Resource):
@@ -33,15 +36,17 @@ class RegisterUser(Resource):
 
         dados = argumentos.parse_args()
         userR = UserModel(**dados)
+        try:
+            userR.saver_user()
+            return serialization(userR), 201
+        except:
+            return {"message": "Internal error"}, 500
 
-        userR.saver_user()
-        return serialization(userR), 201
 
-
-class User(Resource):
+class UserFind(Resource):
     def get(self, id_user):
         userG = UserModel.find_user(id_user)
-        if user:
+        if userG:
             return serialization(userG), 200
         return {"message": "User not found"}, 404
 

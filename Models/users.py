@@ -3,10 +3,10 @@ from sql_alchemy import banco
 from datetime import datetime
 from flask_marshmallow import Marshmallow
 
-from .models import user, UserSchema, db
+from .models import User, UserSchema, db
 
 
-class UserModel(user):
+class UserModel(User):
     def __init__(self, nome_completo, cpf, email, data_de_cadastro):
         self.nome_completo = nome_completo
         self.cpf = cpf
@@ -17,7 +17,13 @@ class UserModel(user):
     def find_user(cls, id_user):
         user = cls.query.filter_by(id_user=id_user).first()
         if user:
-            print("acho")
+            return user
+        return None
+
+    @classmethod
+    def find_user_name(cls, nome_completo):
+        user = cls.query.filter_by(nome_completo=nome_completo).first()
+        if user:
             return user
         return None
 

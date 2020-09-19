@@ -5,8 +5,8 @@ from flask_migrate import Migrate
 
 
 from Models.models import configure as config_db
-from resources.users import RegisterUser, Users, User, Hello
-from resources.check_user import RegisterCheckUser
+from resources.users import RegisterUser, Users, UserFind, Hello
+from resources.check_user import RegisterCheckUser, ListUser
 
 
 app = Flask(__name__)
@@ -27,9 +27,10 @@ Migrate(app, app.db)
 api.add_resource(Hello, "/hello/<int:teste>")
 api.add_resource(RegisterUser, "/cadastro")
 api.add_resource(Users, "/users")
-api.add_resource(User, "/user/<int:id_user>")
+api.add_resource(UserFind, "/user/<int:id_user>")
 
 api.add_resource(RegisterCheckUser, "/point/<int:user_id>")
+api.add_resource(ListUser, "/checks")
 
 
 if __name__ == "__main__":
