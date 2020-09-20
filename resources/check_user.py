@@ -1,9 +1,10 @@
 from flask_restful import Resource, reqparse, request
 from datetime import datetime
+import time
 from collections import OrderedDict
 
-from Models.models import UserSchema, User, CheckIn
-from Models.check_user import CheckUserModel, serialization
+from Models.models import UserSchema, User, CheckIn, db
+from Models.check_user import CheckUserModel, serialization, hour_work
 from Models.users import UserModel
 
 tipo_de_batidas = ("Entrada", "Saida")
@@ -25,11 +26,7 @@ argumentos.add_argument(
     help="Option invalid! Saida/Entrada",
 )
 
-argumentos.add_argument(
-    "hora_data_batida",
-    type=str,
-    default=datetime.now(),
-)
+argumentos.add_argument("data_hora_batida", type=str, default=datetime.now())
 
 
 class RegisterCheckUser(Resource):
@@ -55,7 +52,8 @@ class ListUser(Resource):
         help="Required field 'nome_completo'",
     )
 
-    def get(self):
-        """return [serialization(check_in) for check_in in user.query.all()]"""
-        check = CheckUserModel.find_checks()
-        return serialization(check)
+    def get(self, id_user):
+        return [
+            serialization(CheckIn)
+            for CheckIn in CheckIn.query.filter(CheckIn.user_id == id_user).all()
+        ]

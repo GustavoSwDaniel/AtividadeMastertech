@@ -23,7 +23,7 @@ argumentos.add_argument(
 
 class Users(Resource):
     def get(self):
-        return [serialization(user) for user in user.query.all()]
+        return [serialization(User) for User in User.query.all()]
 
 
 class Hello(Resource):

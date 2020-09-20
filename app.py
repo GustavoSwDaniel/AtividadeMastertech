@@ -30,7 +30,7 @@ api.add_resource(Users, "/users")
 api.add_resource(UserFind, "/user/<int:id_user>")
 
 api.add_resource(RegisterCheckUser, "/point/<int:user_id>")
-api.add_resource(ListUser, "/checks")
+api.add_resource(ListUser, "/checks/<int:id_user>")
 
 
 if __name__ == "__main__":
