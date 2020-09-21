@@ -11,7 +11,7 @@ class UserModel(User):
         self.nome_completo = nome_completo
         self.cpf = cpf
         self.email = email
-        self.data_de_cadastro = datetime.strptime(data_de_cadastro, "%d/%m/%Y")
+        self.data_de_cadastro = data_de_cadastro
 
     @classmethod
     def find_user(cls, id_user):
