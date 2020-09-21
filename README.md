@@ -66,11 +66,15 @@ Nessa requisição os campos que podem ser alterados são nome_completo, cpf e e
 
 ![Image Cadastro usuário](/image/alterar_usuario.png)
 
+### Antes
+![Image Cadastro usuário](/image/antes.png)
+
+
 
 ### Resposta
 A reposta retorna o cadastro do usuário atualizado
 
-![Image Cadastro usuário](/image/respota_alterar_usuario.png)
+![Image Cadastro usuário](/image/atualizado.png)
 
 ### Requisição
 Usuário não cadastrado
