@@ -119,5 +119,32 @@ Retorna o status code 404
 ![Image](/image/erro_404_opcao.png)
 
 
+## 7 - Lista Pontos de Usuarios
+
+### Requisição
+É forncessido o id do usuario que para listar os pontos que foram batido no id_user do mesmo
+
+![Image](/image/doc_checks.png)
+
+
+### Resposta
+Retorna os dados do ponto que foi batido, o id da batida o usuario resposavel, tipo da batida e data e hora da batida
+
+![Image](/image/resposta_check_users.png)
+
+### Requisição
+Uma requisição com um id que não existe na base de dados 
+
+![Image](/image/requisicao_erro_checks.png)
+
+### Resposta
+Retorna a messagem "User not Found"
+
+![Image](/image/resposta_alterar_usuario_erro.png)
+
+
+
+
+
 
 
