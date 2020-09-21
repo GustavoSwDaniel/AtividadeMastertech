@@ -4,7 +4,7 @@ import time
 from collections import OrderedDict
 
 from Models.models import UserSchema, User, CheckIn, db
-from Models.check_user import CheckUserModel, serialization, hour_work
+from Models.check_user import CheckUserModel, serialization
 from Models.users import UserModel
 
 tipo_de_batidas = ("Entrada", "Saida")
@@ -42,16 +42,6 @@ class RegisterCheckUser(Resource):
 
 
 class ListUser(Resource):
-
-    argumentos = reqparse.RequestParser()
-
-    argumentos.add_argument(
-        "nome_completo",
-        type=str,
-        required=True,
-        help="Required field 'nome_completo'",
-    )
-
     def get(self, id_user):
         return [
             serialization(CheckIn)

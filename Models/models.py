@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow
+from flask_marshmallow import Marshmallow, fields
 from datetime import datetime
 
 # pylint: disable=maybe-no-member
@@ -49,6 +49,6 @@ class CheckInUserSchema(ma.Schema):
             "id_pont",
             "usuario_responsavel",
             "tipo_da_batida",
-            "hora_data_batida",
+            "data_hora_batida",
             "id_user",
         )
