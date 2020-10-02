@@ -1,9 +1,9 @@
 # Atividade Mastertech
 
-
+TESTE REBASE
 ## 1 - Cadastro de usuário
 ### Requisição
-Requisição para listar todos os hotéis do sistema, podendo opcionalmente receber filtros personalizados via path, de forma que se o cliente não definir nenhum parâmetro de consulta (nenhum filtro), os parâmetros receberão os valores padrão. 
+Requisição para o cadastro de usuario. A entrada de dados sera realizada fornecendo os seguinte dados: "nome_completo", "cpf" e "email", o ID do usuario sera gerado automáticamente pelo banco de dados.
 
 ![Image](/image/cadastro_usuario.png)
 
