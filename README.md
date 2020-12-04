@@ -9,7 +9,7 @@ Requisição para o cadastro do usuario. A entrada de dados sera realizada forne
 
 ----
 ### Resposta
-##########
+#############
 ![Image](/image/resposta_Cadastro.png)
 
 
