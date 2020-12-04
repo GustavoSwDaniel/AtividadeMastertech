@@ -3,13 +3,13 @@
 TESTE REBASE
 ## 1 - Cadastro de usuário
 ### Requisição
-Requisição para o cadastro de usuario. A entrada de dados sera realizada fornecendo os seguinte dados: "nome_completo", "cpf" e "email", o ID do usuario sera gerado automáticamente pelo banco de dados.
+Requisição para o cadastro do usuario. A entrada de dados sera realizada fornecendo os seguinte dados: "nome_completo", "cpf" e "email", o ID do usuario sera gerado automáticamente pelo banco de dados.
 
 ![Image](/image/cadastro_usuario.png)
 
-
+----
 ### Resposta
-
+##########
 ![Image](/image/resposta_Cadastro.png)
 
 
